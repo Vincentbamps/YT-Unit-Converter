@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Unit Converter",
+  "version": "1.0",
+  "description": "Convert US units in YouTube auto-captions to European units.",
+  "permissions": ["activeTab", "scripting"],
+  "content_scripts": [
+    {
+      "matches": ["*://www.youtube.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
