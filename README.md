@@ -1,4 +1,4 @@
-#YT-Unit-Converter
+## YT-Unit-Converter
 
 An extension that overlays live unit conversions on YouTube captions.  
 It converts US units (e.g., mph, ft/in, oz, lb, °F) to metric units (km/h, m, g, kg, °C) in real-time.
