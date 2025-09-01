@@ -14,7 +14,7 @@ It converts US units (e.g., mph, ft/in, oz, lb, °F) to metric units (km/h, m, g
 
 ## Installation
 
-1. Clone or download this repository.
+1. Clone or download this repository.(unzip if needed)
 2. Open Chrome → `chrome://extensions/`.
 3. Enable **Developer mode**.
 4. Click **Load unpacked** and select this repository folder.
