@@ -1,14 +1,27 @@
 {
-  "manifest_version": 3,
-  "name": "YouTube Unit Converter",
-  "version": "1.0",
-  "description": "Convert US units in YouTube auto-captions to European units.",
-  "permissions": ["activeTab", "scripting"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "128": "icons/icon128.png"
+    }
+  },
   "content_scripts": [
     {
-      "matches": ["*://www.youtube.com/*"],
-      "js": ["content.js"],
-      "run_at": "document_idle"
+      "matches": [
+        "*://*.youtube.com/*"
+      ],
+      "js": [
+        "content.js"
+      ]
     }
-  ]
+  ],
+  "description": "Automatically convert US units in YouTube captions to metric and show them in an overlay.",
+  "manifest_version": 3,
+  "name": "YouTube Unit Converter",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "version": "1.0"
 }

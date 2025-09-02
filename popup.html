@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YT Unit Converter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>⚡ YouTube Unit Converter</h1>
+
+<!-- Overlay-instellingen -->
+<section>
+    <h2>Overlay-instellingen</h2>
+    <label>
+        Positie:
+        <select id="overlayPosition">
+            <option value="top-right">Rechtsboven</option>
+            <option value="top-left">Linksboven</option>
+            <option value="bottom-right">Rechtsonder</option>
+            <option value="bottom-left">Linksonder</option>
+        </select>
+    </label>
+    <br>
+    <label>
+        Grootte:
+        <input type="range" id="overlaySize" min="12" max="32" step="1">
+        <span id="sizeValue"></span> px
+    </label>
+</section>
+
+<!-- Standaard eenheden -->
+<section>
+    <h2>Standaard eenheden</h2>
+    <ul id="defaultUnits"></ul>
+</section>
+
+<!-- Custom eenheden -->
+<section>
+    <h2>Custom eenheden</h2>
+    <ul id="customUnits"></ul>
+    <button id="addUnit">+ Nieuwe eenheid toevoegen</button>
+</section>
+
+<!-- Detectie toggle -->
+<section>
+    <h2>Detectie</h2>
+    <label>
+        <input type="checkbox" id="enableDetection">
+        Conversiedetectie inschakelen
+    </label>
+</section>
+
+<script src="popup.js"></script>
+</body>
+</html>
