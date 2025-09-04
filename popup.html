@@ -1,55 +1,59 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YT Unit Converter</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<h1>⚡ YouTube Unit Converter</h1>
+<div class="popup-container">
+    <h1>⚡ YouTube Unit Converter</h1>
 
-<!-- Overlay-instellingen -->
-<section>
-    <h2>Overlay-instellingen</h2>
-    <label>
-        Positie:
-        <select id="overlayPosition">
-            <option value="top-right">Rechtsboven</option>
-            <option value="top-left">Linksboven</option>
-            <option value="bottom-right">Rechtsonder</option>
-            <option value="bottom-left">Linksonder</option>
-        </select>
-    </label>
-    <br>
-    <label>
-        Grootte:
-        <input type="range" id="overlaySize" min="12" max="32" step="1">
-        <span id="sizeValue"></span> px
-    </label>
-</section>
+    <!-- Overlay settings -->
+    <section>
+        <h2>Overlay Settings</h2>
+        <label>
+            Position:
+            <select id="overlayPosition" class="rounded-select">
+                <option value="top-right">Top Right</option>
+                <option value="top-left">Top Left</option>
+                <option value="bottom-right">Bottom Right</option>
+                <option value="bottom-left">Bottom Left</option>
+            </select>
+        </label>
+        <br>
+        <label>
+            Size:
+            <input type="range" id="overlaySize" min="12" max="32" step="1">
+            <span id="sizeValue"></span> px
+        </label>
+    </section>
 
-<!-- Standaard eenheden -->
-<section>
-    <h2>Standaard eenheden</h2>
-    <ul id="defaultUnits"></ul>
-</section>
+    <!-- Default units -->
+    <section>
+        <h2>Default Units</h2>
+        <ul id="defaultUnits"></ul>
+    </section>
 
-<!-- Custom eenheden -->
-<section>
-    <h2>Custom eenheden</h2>
-    <ul id="customUnits"></ul>
-    <button id="addUnit">+ Nieuwe eenheid toevoegen</button>
-</section>
+    <!-- Custom units -->
+    <section>
+        <h2>Custom Units</h2>
+        <ul id="customUnits"></ul>
+        <button id="addUnit" class="add-unit-btn">+ Add New Unit</button>
+    </section>
 
-<!-- Detectie toggle -->
-<section>
-    <h2>Detectie</h2>
-    <label>
-        <input type="checkbox" id="enableDetection">
-        Conversiedetectie inschakelen
-    </label>
-</section>
+    <!-- Detection toggle -->
+    <section>
+        <h2>Detection</h2>
+        <label class="switch">
+            <input type="checkbox" id="enableDetection">
+            <span class="slider"></span>
+            Enable Conversion Detection
+        </label>
+    </section>
+</div>
 
 <script src="popup.js"></script>
 </body>
