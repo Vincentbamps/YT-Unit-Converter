@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YT Unit Converter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="popup-container">
+    <h1>⚡ YouTube Unit Converter</h1>
+
+    <!-- Overlay settings -->
+    <section>
+        <h2>Overlay Settings</h2>
+        <label>
+            Position:
+            <select id="overlayPosition" class="rounded-select">
+                <option value="top-right">Top Right</option>
+                <option value="top-left">Top Left</option>
+                <option value="bottom-right">Bottom Right</option>
+                <option value="bottom-left">Bottom Left</option>
+            </select>
+        </label>
+        <br>
+        <label>
+            Size:
+            <input type="range" id="overlaySize" min="12" max="32" step="1">
+            <span id="sizeValue"></span> px
+        </label>
+    </section>
+
+    <!-- Default units -->
+    <section>
+        <h2>Default Units</h2>
+        <ul id="defaultUnits"></ul>
+    </section>
+
+    <!-- Custom units -->
+    <section>
+        <h2>Custom Units</h2>
+        <ul id="customUnits"></ul>
+        <button id="addUnit" class="add-unit-btn">+ Add New Unit</button>
+    </section>
+
+    <!-- Detection toggle -->
+    <section>
+        <h2>Detection</h2>
+        <label class="switch">
+            <input type="checkbox" id="enableDetection">
+            <span class="slider"></span>
+            Enable Conversion Detection
+        </label>
+    </section>
+</div>
+
+<script src="popup.js"></script>
+</body>
+</html>

@@ -1,55 +1,195 @@
-body {
-    font-family: Arial, sans-serif;
-    padding: 10px;
-    width: 300px;
-    background-color: #202124;
-    color: #fff;
+/* ========== Base — make the popup itself rounded & opaque ========== */
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 360px;                 /* adjust if you need wider/narrower */
+    background: #0b1220;          /* opaque dark background fixes white corners */
+    color: #eaf7ff;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    border-radius: 16px;          /* rounded popup edges */
+    overflow: hidden;             /* avoid glow/shadow being cut off by frame */
+    -webkit-font-smoothing: antialiased;
 }
 
+/* ========== Card container (no transparency needed) ========== */
+.popup-container {
+    width: 100%;
+    padding: 18px 18px 20px;
+    border-radius: 16px;
+    position: relative;
+
+    /* subtle “glass-ish” panel without outside blur */
+    background:
+            radial-gradient(140% 120% at 0% 0%, rgba(26, 42, 72, 0.95) 0%, rgba(13, 21, 37, 0.95) 60%),
+            linear-gradient(180deg, rgba(0, 217, 255, 0.06), rgba(0, 217, 255, 0.00));
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    outline: 2px solid rgba(0, 217, 255, 0.12);    /* crisp edge so corners look clean */
+    outline-offset: -1px;
+}
+
+/* soft inner glow that doesn’t extend outside the popup */
+.popup-container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    box-shadow:
+            inset 0 0 0 1px rgba(255,255,255,0.06),
+            inset 0 12px 28px rgba(0, 217, 255, 0.05),
+            inset 0 -12px 28px rgba(0, 217, 255, 0.04);
+}
+
+/* ========== Headings ========== */
 h1 {
-    font-size: 18px;
-    margin-bottom: 10px;
+    margin: 0 0 10px;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: center;
+    color: #00d9ff;
+    letter-spacing: 0.2px;
 }
 
 h2 {
+    margin: 0 0 8px;
     font-size: 14px;
-    margin-top: 15px;
+    font-weight: 600;
+    color: #aeeaff;
 }
 
-label {
-    display: block;
-    margin: 5px 0;
-}
+/* ========== Sections & lists ========== */
+section { margin: 0 0 14px; }
 
 ul {
-    list-style-type: none;
+    margin: 8px 0 0;
     padding: 0;
-    margin: 5px 0;
+    list-style: none;
+    max-height: 140px;           /* prevent popup from growing too tall */
+    overflow: auto;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
 }
 
-li {
-    background: #2c2f33;
-    padding: 5px;
-    margin: 3px 0;
-    border-radius: 4px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+ul li {
+    padding: 8px 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+ul li:last-child { border-bottom: none; }
+
+/* ========== Custom scrollbars (Chromium) ========== */
+ul::-webkit-scrollbar { height: 10px; width: 10px; }
+ul::-webkit-scrollbar-track { background: transparent; }
+ul::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #00d9ff, #00b2ff);
+    border-radius: 10px;
+    border: 2px solid rgba(11,18,32,0.9);
 }
 
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 5px 8px;
-    border: none;
-    border-radius: 4px;
+/* ========== Select (rounded) ========== */
+select {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #eaf7ff;
+    font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+select:hover { background: rgba(255,255,255,0.08); }
+select:focus {
+    outline: none;
+    border-color: #00d9ff;
+    box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.25);
+}
+
+/* ========== Slider (clean, glowing thumb) ========== */
+#overlaySize {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.18), rgba(255,255,255,0.10));
+    outline: none;
     cursor: pointer;
 }
-
-button:hover {
-    background-color: #45a049;
+#overlaySize::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #ffffff, #b9f4ff 50%, #00d9ff 100%);
+    box-shadow:
+            0 0 0 3px rgba(0,217,255,0.25),
+            0 4px 10px rgba(0,217,255,0.35);
+    transition: transform 0.12s ease;
+}
+#overlaySize::-webkit-slider-thumb:hover { transform: scale(1.1); }
+#overlaySize::-moz-range-thumb {
+    width: 18px; height: 18px; border-radius: 50%;
+    background: #00d9ff; border: none;
 }
 
-input[type="range"] {
+/* value text */
+#sizeValue { display: inline-block; min-width: 24px; text-align: right; color: #c9eaff; }
+
+/* ========== Button ========== */
+button {
     width: 100%;
+    padding: 10px 12px;
+    background: linear-gradient(180deg, #00d9ff, #00b2ff);
+    color: #091223;
+    border: none;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.04s ease, box-shadow 0.2s ease;
+    box-shadow: 0 6px 18px rgba(0, 179, 255, 0.25);
 }
+button:hover { box-shadow: 0 10px 26px rgba(0,179,255,0.35); }
+button:active { transform: translateY(1px); }
+
+/* ========== Toggle switch ========== */
+.switch {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+.switch input { display: none; }
+
+.switch .slider {
+    position: relative;
+    width: 52px; height: 28px;
+    border-radius: 999px;
+    background: #26324a;
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: inset 0 4px 10px rgba(0,0,0,0.25);
+    transition: background 0.2s, box-shadow 0.2s;
+}
+.switch .slider::before {
+    content: "";
+    position: absolute;
+    left: 3px; top: 3px;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #ffffff, #b9f4ff 50%, #00d9ff 100%);
+    box-shadow:
+            0 0 0 3px rgba(0,217,255,0.20),
+            0 6px 14px rgba(0,217,255,0.30);
+    transition: transform 0.2s ease;
+}
+.switch input:checked + .slider {
+    background: linear-gradient(180deg, #00d9ff22, #00b2ff22);
+    box-shadow: inset 0 6px 18px rgba(0,217,255,0.18);
+}
+.switch input:checked + .slider::before { transform: translateX(24px); }
+
+/* label text next to switch */
+.switch { color: #d7f2ff; font-size: 14px; }
