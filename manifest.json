@@ -1,9 +1,21 @@
 {
+  "manifest_version": 3,
+  "name": "YouTube Unit Converter",
+  "description": "Automatically converts US units in YouTube captions to metric units and displays them in an overlay.",
+  "version": "1.0.0",
   "action": {
+    "default_title": "YouTube Unit Converter",
     "default_popup": "popup.html",
     "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
       "128": "icon128.png"
     }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
   },
   "content_scripts": [
     {
@@ -12,16 +24,33 @@
       ],
       "js": [
         "content.js"
-      ]
+      ],
+      "run_at": "document_idle"
     }
   ],
-  "description": "Automatically convert US units in YouTube captions to metric and show them in an overlay.",
-  "manifest_version": 3,
-  "name": "YouTube Unit Converter",
   "permissions": [
     "storage",
     "activeTab",
     "scripting"
   ],
-  "version": "1.0"
+  "host_permissions": [
+    "*://*.youtube.com/*"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "style.css",
+        "icon16.png",
+        "icon48.png",
+        "icon128.png"
+      ],
+      "matches": [
+        "*://*.youtube.com/*"
+      ]
+    }
+  ],
+  "options_ui": {
+    "page": "popup.html",
+    "open_in_tab": false
+  }
 }
